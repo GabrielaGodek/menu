@@ -12,6 +12,7 @@
   align-items: center;
   flex-direction: column;
   background-color: #4f5d61;
+  font-family: "Comfortaa", cursive;
 }
 
 .lp-container .shadow-effect {
@@ -34,6 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transform: scale(1.5);
 }
 
 .lp-container .menu .menu-box {
@@ -50,6 +52,7 @@
   background-color: #3a4257;
   transform-style: preserve-3d;
   margin: 2px 0;
+  transition: transform 750ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
   position: relative;
 }
 
@@ -70,11 +73,11 @@
 }
 
 .lp-container .menu .menu-box .top {
-  transform: translateX(0%) translateZ(-35px) translateY(-35px) rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  transform: translateX(-1px) translateZ(-34px) translateY(-35px) rotateX(90deg) rotateY(0deg) rotateZ(0deg);
 }
 
 .lp-container .menu .menu-box .bottom {
-  transform: translateX(0%) translateZ(-35px) translateY(35px) rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+  transform: translateX(0) translateZ(-35px) translateY(35px) rotateX(90deg) rotateY(0deg) rotateZ(0deg);
 }
 
 .lp-container .menu .menu-box .top,
@@ -88,22 +91,22 @@
 
 .lp-container .menu .menu-box::before {
   background-color: #363d51;
-  transform: translateX(-100px) translateZ(-35px) rotateX(0deg) rotateY(-90deg);
+  transform: translateX(-100px) translateZ(-34px) rotateX(0deg) rotateY(-90deg);
   width: 70px;
   height: 70px;
   content: "";
 }
 
-.lp-container .menu .menu-box:hover {
-  animation: moveElement 1.5s;
-  transition: background-color 0.9s ease;
+.lp-container .menu .menu-box:is(:hover, :active) {
+  transform: translateX(50px) translateZ(-20px) translateY(-5px) rotateX(-15deg) rotateY(25deg);
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
   background-color: #798c92;
   animation-delay: 0.1s;
   animation-fill-mode: forwards;
 }
 
-.lp-container .menu .menu-box:hover::before {
-  transition: background-color 0.6s ease;
+.lp-container .menu .menu-box:is(:hover, :active)::before {
+  transition: background-color 0s ease;
   background-color: #6f8186;
 }
 
@@ -118,25 +121,19 @@
 }
 
 @keyframes moveElement {
-  to {
+  0% {
+    transform: translateX(0px) translateZ(0px) translateY(0px) rotateX(-15deg) rotateY(25deg);
+  }
+  50% {
     transform: translateX(50px) translateZ(-20px) translateY(-5px) rotateX(-15deg) rotateY(25deg);
   }
-}
-
-@keyframes moveElementIn {
-  to {
-    transform: translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
+  100% {
+    transform: translateX(0px) translateZ(0px) translateY(0px) rotateX(-15deg) rotateY(25deg);
   }
 }
 
-@keyframes moveElementOut {
-  from {
-    background-color: #798c92;
-    color: #363d51;
-    transform: translateX(50px) translateZ(-100px) rotateX(0deg) rotateY(30deg);
-    z-index: 3;
-    to {
-      transform: translateX(0px) translateZ(0px) rotateX(0deg) rotateY(25deg);
-    }
+@media screen and (max-width: 600px) {
+  .menu {
+    transform: scale(0.5);
   }
 }
