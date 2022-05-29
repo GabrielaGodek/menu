@@ -123,8 +123,15 @@
 
 
 //RWD
+@media screen and (max-width: 400px) {
+    .menu {
+        margin-left: 40px;
+        scale: .7;
+    }
+}
 @media screen and (max-width: 600px) {
     .menu {
-        transform: scale(0.5);
+        margin-left: 40px;
+        scale: .8;
     }
 }
